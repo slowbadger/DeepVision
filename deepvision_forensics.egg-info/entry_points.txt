@@ -1,0 +1,2 @@
+[console_scripts]
+deepvision-eval = src.evaluate:main

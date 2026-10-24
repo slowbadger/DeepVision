@@ -1,0 +1,5 @@
+# Exclude large dataset directories
+CASIA2/
+REAL-TS/
+# Exclude large model checkpoints
+checkpoints/

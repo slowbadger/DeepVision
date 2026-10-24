@@ -1,0 +1,22 @@
+{
+  "casia2": {
+    "n_images": 12614,
+    "binary_accuracy": 0.9538607895988584,
+    "roc_auc": 0.993248896528655
+  },
+  "realts": {
+    "n_images": 440,
+    "binary_accuracy": 0.5454545454545454,
+    "roc_auc": 0.5884710743801653
+  },
+  "figures_generated": [
+    "fig1_training_curves.png",
+    "fig2_roc_curve.png",
+    "fig3_precision_recall.png",
+    "fig4_confusion_matrix.png",
+    "fig5_cross_dataset_comparison.png",
+    "fig6_ela_visualization.png",
+    "fig7_qualitative_results.png",
+    "fig8_per_class_metrics.png"
+  ]
+}

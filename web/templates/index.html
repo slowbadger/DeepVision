@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DeepVision Forensics</title>
+    <!-- Professional fonts: Inter (sans) and Roboto Mono (mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <svg class="brand-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <span class="brand-name">DeepVision Forensics</span>
+            </div>
+            <div class="system-status">
+                <span class="status-dot"></span>
+                <span class="status-label">Model Ready</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <!-- Upload area -->
+        <section class="glass-panel upload-section">
+            <div class="dropzone" id="dropzone">
+                <input type="file" id="fileInput" accept="image/*" style="display:none;" />
+                <div class="dropzone-text">
+                    <span class="dropzone-main" id="dropzoneLabel">Select or drag an image for analysis</span>
+                    <span class="dropzone-sub">Supported: JPEG, PNG, TIFF, WebP</span>
+                </div>
+            </div>
+            <div class="upload-controls">
+                <button class="btn btn-primary" id="btnAnalyze" disabled>Run Analysis</button>
+                <button class="btn btn-outline" id="btnSample">Load Sample</button>
+            </div>
+            <!-- File info preview (shown after selection, before analysis) -->
+            <div id="fileInfo" class="file-info" style="display:none; margin-top:1rem;">
+                <p id="fileName"></p>
+                <p id="fileSize"></p>
+                <img id="previewImg" src="" alt="Preview" style="max-width:200px; margin-top:0.5rem;" />
+            </div>
+        </section>
+
+        <!-- Loader -->
+        <div id="loader" class="loader-overlay" style="display:none;">
+            <div class="spinner"></div>
+            <span>Processing...</span>
+        </div>
+
+        <!-- Results area -->
+        <section id="results" class="glass-panel results-section" style="display:none;">
+            <!-- Summary Header -->
+            <div class="summary-header" style="display:flex; align-items:center; justify-content:space-between; padding:1rem; border-bottom:1px solid var(--border-glass);">
+                <h2 id="verdictBadge" class="verdict-tag"></h2>
+                <div class="verdict-details">
+                    <h3 id="attributedMethod" class="verdict-title"></h3>
+                    <div class="metrics" style="font-size:0.9rem;">
+                        <span>Probability: <span id="tamperProb"></span></span>
+                        <span style="margin-left:1rem;">Confidence: <span id="methodConf"></span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Tabs -->
+            <div class="tabs" style="display:flex; border-bottom:1px solid var(--border-glass);">
+                <button class="tab-btn active" data-tab="visuals">Tamper Detection / Visuals</button>
+                <button class="tab-btn" data-tab="evidence">Forensic Evidence</button>
+            </div>
+            <!-- Tab Content -->
+            <div class="tab-content" id="visualsTab" style="margin-top:1rem;">
+                <div class="image-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+                    <figure><img id="origImg" src="" alt="Original" /><figcaption>Original</figcaption></figure>
+                    <figure><img id="elaImg" src="" alt="ELA" /><figcaption>ELA</figcaption></figure>
+                    <figure><img id="heatmapImg" src="" alt="Heatmap" /><figcaption>Heatmap Overlay</figcaption></figure>
+                    <figure><img id="maskImg" src="" alt="Mask" /><figcaption>Binary Mask</figcaption></figure>
+                </div>
+            </div>
+            <div class="tab-content" id="evidenceTab" style="display:none; margin-top:1rem;">
+                <div id="evidenceBox" class="evidence-box"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-container">
+            <span>DeepVision Forensics – Image Tampering Verification</span>
+            <span class="footer-mono">v1.2.0 – Local</span>
+        </div>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
